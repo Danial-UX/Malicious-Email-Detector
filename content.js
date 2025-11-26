@@ -1,4 +1,3 @@
-// Function to extract email content based on the email provider
 function extractEmailContent() {
     let emailContent = {
         subject: '',
@@ -10,12 +9,10 @@ function extractEmailContent() {
 
     console.log('Starting email content extraction...');
 
-    // Add debug logging
     debugAttachments(emailContent.attachments);
 
     // Gmail
     if (window.location.hostname.includes('mail.google.com')) {
-        // Get email subject
         const subjectElement = document.querySelector('h2.hP');
         if (subjectElement) {
             emailContent.subject = subjectElement.textContent.trim();
@@ -58,29 +55,26 @@ function extractEmailContent() {
 
         // Get attachments for Gmail
         const attachmentSelectors = [
-            '.aZo',  // Gmail attachment container
-            '.aZp',  // Alternative Gmail attachment selector
+            '.aZo',  
+            '.aZp',  
             '.attachment',
             '[role="listitem"] span[title*="Download"]',
-            '.J-N-JX'  // Gmail's span element for attachments
+            '.J-N-JX'  
         ];
 
         attachmentSelectors.forEach(selector => {
             const attachmentElements = document.querySelectorAll(selector);
             attachmentElements.forEach(element => {
-                // Extract attachment information
                 let fileName = '';
                 let fileSize = '';
                 let downloadUrl = '';
 
-                // Try to get filename from various attributes and text content
                 fileName = element.getAttribute('data-tooltip') || 
                           element.getAttribute('title') || 
                           element.textContent.trim() ||
                           element.querySelector('span[title]')?.getAttribute('title') ||
                           '';
 
-                // Extract file size if available
                 const sizeElement = element.querySelector('.aZm') || 
                                   element.querySelector('.attachment-size') ||
                                   element.nextElementSibling;
@@ -108,7 +102,6 @@ function extractEmailContent() {
 
     // Outlook email providers
     else if (window.location.hostname.includes('outlook')) {
-        // Get email subject for Outlook
         const subjectSelectors = ['[role="heading"]', '.rps_d3b2', 'h1'];
         let subjectElement = null;
         
@@ -401,9 +394,9 @@ async function analyzeAttachmentsWithAI(attachments) {
         size: att.fileSize || 'unknown'
     }));
 
-    const prompt = `You are a cybersecurity expert analyzing email attachments for malware and security risks.
+    const prompt = `You are a cybersecurity expert analysing email attachments for malware and security risks.
 
-Analyze the following email attachments and respond ONLY with a JSON object (no markdown formatting):
+Analyse the following email attachments and respond ONLY with a JSON object (no markdown formatting):
 
 Attachments: ${JSON.stringify(attachmentInfo)}
 
@@ -468,10 +461,10 @@ async function analyzeTextContext(text, type, patterns = [], emailContent = null
 
 Suspicious patterns found: ${patterns.join(', ')}
 
-Analyze the following aspects and respond ONLY with a JSON object (no markdown formatting, no backticks):
+Analyse the following aspects and respond ONLY with a JSON object (no markdown formatting, no backticks):
 
 1. SENDER LEGITIMACY:
-- Is the sender's domain consistent with the claimed organization?
+- Is the sender's domain consistent with the claimed organisation?
 - Are there subtle misspellings or unusual characters?
 
 2. CONTENT ANALYSIS:
@@ -481,12 +474,12 @@ Analyze the following aspects and respond ONLY with a JSON object (no markdown f
 - Does the tone match legitimate business communication?
 
 3. LINK ANALYSIS:
-- Are URLs consistent with the claimed organization?
+- Are URLs consistent with the claimed organisation?
 - Are there shortened or obscured links?
 
 4. RED FLAGS:
 - Grammatical errors or inconsistent formatting
-- Generic greetings or unusual personalization
+- Generic greetings or unusual personalisation
 - Mismatched sender names and email addresses
 - Requests to verify accounts or provide credentials
 - Threats about account suspension or closure
@@ -509,7 +502,7 @@ Required JSON response format (no additional text or formatting):
     "suspiciousElements": ["list", "of", "suspicious", "elements"]
 }
 
-Text to analyze: "${text}"
+Text to analyse: "${text}"
 ${emailContent ? `\nAdditional context - Sender: ${emailContent.sender}, Subject: ${emailContent.subject}` : ''}`
     };
 
@@ -544,13 +537,11 @@ ${emailContent ? `\nAdditional context - Sender: ${emailContent.sender}, Subject
     }
 }
 
-// Function to analyze email content
 async function analyzeEmail(emailContent) {
     let highRiskFactors = [];
     let warnings = [];
     let contextualAnalysis = [];
 
-    // Analyze attachments first
     if (emailContent.attachments && emailContent.attachments.length > 0) {
         console.log('Analyzing attachments:', emailContent.attachments);
         
@@ -643,7 +634,6 @@ async function analyzeEmail(emailContent) {
         }
     }
 
-    // Check body patterns
     if (emailContent.body) {
         const bodyLower = emailContent.body.toLowerCase();
         const patterns = [
@@ -697,7 +687,6 @@ async function analyzeEmail(emailContent) {
         }
     }
 
-    // Check links
     if (emailContent.links.length > 0) {
         const suspiciousUrlPatterns = [
             'bit\\.ly', 'tinyurl', 'goo\\.gl', 'tiny\\.cc',

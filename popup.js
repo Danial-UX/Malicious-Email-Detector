@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 else if (item.type === 'attachment_ai') {
                     const aiHeader = document.createElement('div');
                     aiHeader.style.cssText = 'font-weight: bold; margin-bottom: 8px; color: #d73027;';
-                    aiHeader.innerHTML = `🤖 ${item.detail}`;
+                    aiHeader.innerHTML = `${item.detail}`;
                     li.appendChild(aiHeader);
 
                     // Add AI reasoning
