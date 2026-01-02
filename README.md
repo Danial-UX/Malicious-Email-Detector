@@ -8,7 +8,7 @@ The tool supports user's manual inspection of emails directly in your browser, a
 - **AI Powered Contextual Detection**  
   Uses Gemini Flash 2.5 Large Language Model to interpret the intent and tone of emails, identifying manipulative or deceptive communication patterns.
 
-- **RealTime Risk Assessment**  
+- **Real Time Risk Assessment**  
   Instantly categorises emails as **High**, **Suspicious**, or **Low** risk with explanations.
 
 - **Detailed Diagnostics**  
