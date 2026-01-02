@@ -24,7 +24,7 @@ The tool supports user's manual inspection of emails directly in your browser, a
 
 ## **How It Works**
 
-https://github.com/user-attachments/assets/691c06b7-5143-431a-82c6-ed05fda715e4
+https://github.com/user-attachments/assets/61930b7c-4e60-48cc-afab-faf5b7b5d6cb
 
 1. **Content Capture**  
    The extension extracts key email elements such as the sender’s address, subject line, body text, and embedded links.  
@@ -55,7 +55,7 @@ https://github.com/user-attachments/assets/691c06b7-5143-431a-82c6-ed05fda715e4
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/RohinSequeira/phishing_detection.git
+   git clone https://github.com/Danial-UX/Malicious-Email-Detector.git
    ```
 2. **Configure your API key:**
    - Obtain a Gemini API key from the [Google AI Studio](https://aistudio.google.com/api-keys)
